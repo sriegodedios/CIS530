@@ -1,0 +1,95 @@
+<html>
+  <head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-lg-10 col-lg-3">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                Hello World
+              </div>
+              <div class="row">
+                <video id="video" width="540" height="380" autoplay></video>
+
+              </div>
+
+              <br/>
+
+              <button style="" class="btn btn-primary"id="snap" data-toggle="modal" data-target="#exampleModal">Snap Photo</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
+              </button>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+            <!--button class="btn btn-primary"id="snap" data-toggle="modal" data-target="#exampleModal">Snap Photo</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Launch demo modal
+            </button-->
+          </div>
+          </div>
+
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-camera"></i> Photo Taken</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="col-lg-12">
+                        <canvas style="margin-right: auto; margin-left: auto;" id="canvas" width="530" height="370"></canvas>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary"><i class="fas fa-upload" aria-hidden="true"></i>Analyze</button>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+      </div>
+    </div>
+  </div>
+    <script type="text/javascript">
+      var video = document.getElementById('video');
+
+      // Get access to the camera!
+        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Not adding `{ audio: true }` since we only want video now
+          navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+            //video.src = window.URL.createObjectURL(stream);
+            video.srcObject = stream;
+            video.play();
+        });
+      }
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+      var video = document.getElementById('video');
+      // Trigger photo take
+      document.getElementById("snap").addEventListener("click", function() {
+      context.drawImage(video, 0, 0, 540, 380);
+
+    });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
